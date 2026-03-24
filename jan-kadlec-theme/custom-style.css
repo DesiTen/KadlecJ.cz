@@ -553,6 +553,171 @@ textarea.form-control {
 }
 
 /* ============================================================
+   BREADCRUMBS — drobečková navigace
+   ============================================================ */
+.breadcrumbs {
+    margin-bottom: var(--space-lg);
+}
+
+.breadcrumbs__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumbs__item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+}
+
+.breadcrumbs__link {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.breadcrumbs__link:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumbs__item--current span {
+    color: var(--color-dark);
+    font-weight: 500;
+}
+
+.breadcrumbs__sep {
+    color: var(--color-border);
+    font-size: 0.75rem;
+    user-select: none;
+}
+
+/* ============================================================
+   ARCHIVE GRID — přehled příspěvků
+   ============================================================ */
+.archive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.archive-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.archive-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.archive-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.archive-card__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.archive-card__title a {
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.archive-card__title a:hover {
+    color: var(--color-primary);
+}
+
+/* ============================================================
+   POST NAVIGATION — předchozí / následující
+   ============================================================ */
+.post-navigation .nav-links {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.post-navigation .nav-previous,
+.post-navigation .nav-next {
+    flex: 1;
+    min-width: 200px;
+}
+
+.post-navigation .nav-next {
+    text-align: right;
+}
+
+.post-navigation a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+    padding: var(--space-sm);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.post-navigation a:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-card);
+}
+
+.post-nav-label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.post-nav-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-dark);
+    line-height: 1.4;
+}
+
+/* ============================================================
+   SINGLE — čas čtení badge
+   ============================================================ */
+.single-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.single-tags a.tag {
+    text-decoration: none;
+    transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+.single-tags a.tag:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* ============================================================
    PRINT
    ============================================================ */
 @media print {

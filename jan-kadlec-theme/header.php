@@ -4,6 +4,21 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Barva prohlížeče na mobilech (brand primary) -->
+    <meta name="theme-color" content="#0056b3">
+
+    <!-- Autor webu -->
+    <link rel="author" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+
+    <!-- Preload kritického fontu (Montserrat Bold — hlavní nadpisy) -->
+    <link
+        rel="preload"
+        as="style"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&amp;family=Inter:wght@400;500&amp;display=swap"
+        crossorigin="anonymous"
+    >
+
     <link rel="profile" href="https://gmpg.org/xfn/11">
     <?php wp_head(); ?>
 </head>

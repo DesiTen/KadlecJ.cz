@@ -16,6 +16,11 @@ define( 'JK_THEME_DIR',     get_template_directory() );
 define( 'JK_THEME_URI',     get_template_directory_uri() );
 
 /* ============================================================
+   INCLUDE: SEO infrastruktura
+   ============================================================ */
+require_once JK_THEME_DIR . '/inc/seo.php';
+
+/* ============================================================
    NASTAVENÍ ŠABLONY
    ============================================================ */
 function jk_theme_setup(): void {
