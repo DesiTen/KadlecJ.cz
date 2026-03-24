@@ -237,60 +237,103 @@ get_header();
 
 
 <!-- ============================================================
-     MIMO TERMINÁL — COMING SOON
+     BLOG — MIMO TERMINÁL
+     Sekce se přizpůsobí automaticky:
+       – Pokud existují příspěvky → editorial grid s posledními 3
+       – Pokud jsou 0 příspěvků  → coming-soon placeholder
      ============================================================ -->
-<section class="section mimo-terminal" id="mimo-terminal" aria-labelledby="mimo-terminal-heading">
+<?php
+$blog_query = new WP_Query( [
+    'post_type'           => 'post',
+    'post_status'         => 'publish',
+    'posts_per_page'      => 3,
+    'orderby'             => 'date',
+    'order'               => 'DESC',
+    'no_found_rows'       => false,
+    'ignore_sticky_posts' => true,
+] );
+$has_posts = $blog_query->have_posts();
+?>
+<section
+    class="section blog-section<?php echo ! $has_posts ? ' blog-section--empty' : ''; ?>"
+    id="blog"
+    aria-labelledby="blog-heading"
+>
     <div class="container">
-        <div class="mimo-terminal__inner">
 
-            <!-- Levý obsah -->
-            <div class="mimo-terminal__content">
-                <span class="section-eyebrow"><?php esc_html_e( 'Mimo terminál', 'jan-kadlec-theme' ); ?></span>
-                <h2 id="mimo-terminal-heading" class="mimo-terminal__title">
-                    <?php esc_html_e( 'Leadership, mindset', 'jan-kadlec-theme' ); ?>
-                    <br>
-                    <span><?php esc_html_e( '& knihy, které mě formují', 'jan-kadlec-theme' ); ?></span>
-                </h2>
-                <p class="mimo-terminal__desc">
-                    <?php esc_html_e( 'AI a automatizace jsou jen část příběhu. Připravuji prostor pro myšlenky o leadershipu, strategickém myšlení a knihách, které rezonují s každodenní realitou vedení firmy.', 'jan-kadlec-theme' ); ?>
-                </p>
-                <div class="mimo-terminal__coming-soon">
+        <header class="section-header">
+            <span class="section-eyebrow"><?php esc_html_e( 'Mimo terminál', 'jan-kadlec-theme' ); ?></span>
+            <h2 class="section-title" id="blog-heading">
+                <?php esc_html_e( 'Leadership, mindset', 'jan-kadlec-theme' ); ?>
+                <span><?php esc_html_e( '& knihy, které mě formují', 'jan-kadlec-theme' ); ?></span>
+            </h2>
+            <p class="section-desc">
+                <?php esc_html_e( 'AI a automatizace jsou jen část příběhu. Myšlenky o leadershipu, strategickém myšlení a knihách, které rezonují s každodenní realitou vedení firmy.', 'jan-kadlec-theme' ); ?>
+            </p>
+        </header>
+
+        <?php if ( $has_posts ) : ?>
+
+            <!-- ——— Editorial grid ——— -->
+            <div class="blog-featured">
+
+                <!-- Hlavní (featured) příspěvek — zabírá levé 2/3 -->
+                <div class="blog-featured__main">
+                    <?php
+                    $blog_query->the_post();
+                    get_template_part( 'template-parts/blog-card', null, [ 'variant' => 'featured' ] );
+                    ?>
+                </div>
+
+                <!-- Vedlejší 2 příspěvky — pravá 1/3, stacked -->
+                <div class="blog-featured__side">
+                    <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+                        <?php get_template_part( 'template-parts/blog-card', null, [ 'variant' => 'horizontal' ] ); ?>
+                    <?php endwhile; ?>
+                </div>
+
+            </div><!-- /.blog-featured -->
+
+            <!-- Odkaz na plný archiv -->
+            <div class="blog-section__footer">
+                <?php
+                $blog_url = get_option( 'page_for_posts' )
+                    ? get_permalink( (int) get_option( 'page_for_posts' ) )
+                    : home_url( '/blog/' );
+                ?>
+                <a class="btn btn-secondary" href="<?php echo esc_url( $blog_url ); ?>">
+                    <?php esc_html_e( 'Všechny příspěvky', 'jan-kadlec-theme' ); ?> →
+                </a>
+                <span class="blog-section__count">
+                    <?php
+                    printf(
+                        /* translators: %d: celkový počet příspěvků */
+                        esc_html( _n( '%d příspěvek celkem', '%d příspěvků celkem', (int) $blog_query->found_posts, 'jan-kadlec-theme' ) ),
+                        (int) $blog_query->found_posts
+                    );
+                    ?>
+                </span>
+            </div>
+
+        <?php else : ?>
+
+            <!-- ——— Coming-soon placeholder ——— -->
+            <div class="blog-empty">
+                <div class="blog-empty__icon" aria-hidden="true">✍️</div>
+                <p class="blog-empty__label">
                     <span class="mimo-terminal__dot" aria-hidden="true"></span>
                     <?php esc_html_e( 'Obsah se připravuje — brzy spustím', 'jan-kadlec-theme' ); ?>
-                </div>
+                </p>
+                <p class="blog-empty__hint">
+                    <?php esc_html_e( 'Přidejte první příspěvek ve WordPress administraci a zde se automaticky zobrazí.', 'jan-kadlec-theme' ); ?>
+                </p>
             </div>
 
-            <!-- Pravý placeholder -->
-            <div class="mimo-terminal__cards" aria-hidden="true">
-                <div class="book-card book-card--blur">
-                    <div class="book-card__spine"></div>
-                    <div class="book-card__body">
-                        <div class="book-card__line book-card__line--title"></div>
-                        <div class="book-card__line book-card__line--author"></div>
-                        <div class="book-card__line"></div>
-                        <div class="book-card__line book-card__line--short"></div>
-                    </div>
-                </div>
-                <div class="book-card book-card--blur book-card--offset">
-                    <div class="book-card__spine book-card__spine--gold"></div>
-                    <div class="book-card__body">
-                        <div class="book-card__line book-card__line--title"></div>
-                        <div class="book-card__line book-card__line--author"></div>
-                        <div class="book-card__line"></div>
-                    </div>
-                </div>
-                <div class="book-card book-card--blur book-card--back">
-                    <div class="book-card__spine"></div>
-                    <div class="book-card__body">
-                        <div class="book-card__line book-card__line--title"></div>
-                        <div class="book-card__line"></div>
-                    </div>
-                </div>
-            </div>
+        <?php endif; ?>
+        <?php wp_reset_postdata(); ?>
 
-        </div><!-- /.mimo-terminal__inner -->
     </div><!-- /.container -->
-</section><!-- /.mimo-terminal -->
+</section><!-- /.blog-section -->
 
 
 <!-- ============================================================
@@ -341,8 +384,8 @@ get_header();
                     <?php if ( has_post_thumbnail() ) : ?>
                         <a href="<?php the_permalink(); ?>" tabindex="-1" aria-hidden="true">
                             <?php the_post_thumbnail( 'jk-card', [
-                                'class'   => 'archive-card__img',
-                                'loading' => 'lazy',
+                                'class'    => 'archive-card__img',
+                                'loading'  => 'lazy',
                                 'itemprop' => 'image',
                             ] ); ?>
                         </a>

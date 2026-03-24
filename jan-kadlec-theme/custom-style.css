@@ -553,6 +553,460 @@ textarea.form-control {
 }
 
 /* ============================================================
+   BLOG — HOMEPAGE PREVIEW (sekce #blog)
+   ============================================================ */
+
+/* Editorial grid: featured vlevo (2/3) + 2 menší vpravo (1/3) */
+.blog-featured {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr;
+    gap: var(--space-md);
+    align-items: start;
+}
+
+.blog-featured__side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    height: 100%;
+}
+
+/* Footer blogu — tlačítko + počet příspěvků */
+.blog-section__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.blog-section__count {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+}
+
+/* Coming-soon prázdný stav */
+.blog-empty {
+    text-align: center;
+    padding: var(--space-xl) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.blog-empty__icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.blog-empty__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    padding: 0.5rem 1.1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+}
+
+.blog-empty__hint {
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    max-width: 380px;
+}
+
+.blog-empty__title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-dark);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+    .blog-featured {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-featured__side {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .blog-featured__side > * {
+        flex: 1 1 280px;
+    }
+}
+
+@media (max-width: 560px) {
+    .blog-section__footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .blog-featured__side {
+        flex-direction: column;
+    }
+}
+
+/* ============================================================
+   BLOG — KARTA PŘÍSPĚVKU (.blog-card)
+   ============================================================ */
+
+.blog-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform var(--transition-bounce),
+        box-shadow var(--transition-base);
+    height: 100%;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lift);
+}
+
+/* ——— Obrázek ——— */
+.blog-card__img-wrap {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.blog-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+.blog-card:hover .blog-card__img {
+    transform: scale(1.04);
+}
+
+/* Výška obrázku dle varianty */
+.blog-card--featured .blog-card__img-wrap {
+    height: 360px;
+}
+
+.blog-card--standard .blog-card__img-wrap {
+    height: 220px;
+}
+
+.blog-card--horizontal .blog-card__img-wrap {
+    height: 140px;
+}
+
+/* Placeholder bez obrázku */
+.blog-card__img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--cat-color, var(--color-primary)) 12%, white),
+        color-mix(in srgb, var(--cat-color, var(--color-primary)) 6%, white)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-card__img-placeholder span {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--cat-color, var(--color-primary));
+    opacity: 0.25;
+}
+
+/* Kategorie badge přes obrázek */
+.blog-card__cat-badge {
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    background: var(--cat-color, var(--color-primary));
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-pill);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* ——— Tělo karty ——— */
+.blog-card__body {
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+/* Horizontální varianta — zmenšené padding */
+.blog-card--horizontal .blog-card__body {
+    padding: var(--space-sm) var(--space-md);
+}
+
+.blog-card__title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.blog-card--featured .blog-card__title {
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+}
+
+.blog-card--standard .blog-card__title {
+    font-size: 1.1rem;
+}
+
+.blog-card--horizontal .blog-card__title {
+    font-size: 0.98rem;
+}
+
+.blog-card__title a {
+    color: var(--color-dark);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.blog-card__title a:hover {
+    color: var(--color-primary);
+}
+
+/* Meta: datum + čas čtení */
+.blog-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+.blog-card__sep {
+    color: var(--color-border);
+    font-size: 0.7rem;
+}
+
+.blog-card__reading-time {
+    color: var(--color-text-muted);
+}
+
+/* Výtah */
+.blog-card__excerpt {
+    font-size: 0.92rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+    flex: 1;
+
+    /* Dvouřádkové zkrácení přes CSS */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-card--featured .blog-card__excerpt {
+    -webkit-line-clamp: 3;
+}
+
+.blog-card--standard .blog-card__excerpt {
+    -webkit-line-clamp: 2;
+}
+
+/* Odkaz "Číst dál" */
+.blog-card__link {
+    margin-top: auto;
+    padding-top: 0.25rem;
+}
+
+/* ============================================================
+   BLOG — ARCHIV (home.php / archive.php)
+   ============================================================ */
+
+/* Hero hlavička */
+.blog-archive-hero {
+    padding-top: calc(72px + var(--space-xl));
+    padding-bottom: var(--space-xl);
+    background: linear-gradient(135deg, var(--color-white) 0%, #eef4fc 100%);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.blog-archive-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 720px;
+}
+
+.blog-archive-hero__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+.blog-archive-hero__desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    max-width: 580px;
+    line-height: 1.75;
+}
+
+/* Filtr kategorií */
+.blog-filter-bar {
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    position: sticky;
+    top: 72px;
+    z-index: 100;
+}
+
+.blog-filter {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    overflow-x: auto;
+    padding: 0.75rem 0;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.blog-filter::-webkit-scrollbar {
+    display: none;
+}
+
+.blog-filter__item {
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1.5px solid transparent;
+    transition:
+        color var(--transition-base),
+        background-color var(--transition-base),
+        border-color var(--transition-base);
+}
+
+.blog-filter__item:hover {
+    color: var(--color-primary);
+    background: rgba(0, 86, 179, 0.06);
+}
+
+.blog-filter__item--active {
+    color: var(--color-primary);
+    background: rgba(0, 86, 179, 0.08);
+    border-color: rgba(0, 86, 179, 0.2);
+}
+
+/* Grid příspěvků v archivu */
+.blog-archive-wrap {
+    padding-block: var(--space-xl) var(--space-2xl);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Paginace blogu */
+.blog-pagination {
+    margin-top: var(--space-xl);
+    display: flex;
+    justify-content: center;
+}
+
+.blog-pagination .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.blog-pagination .page-numbers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--color-border);
+    text-decoration: none;
+    transition:
+        color var(--transition-base),
+        background-color var(--transition-base),
+        border-color var(--transition-base);
+}
+
+.blog-pagination .page-numbers:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: rgba(0, 86, 179, 0.06);
+}
+
+.blog-pagination .page-numbers.current {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+.blog-pagination .page-numbers.prev,
+.blog-pagination .page-numbers.next {
+    width: auto;
+    padding: 0 var(--space-sm);
+    font-size: 1rem;
+}
+
+.blog-pagination .page-numbers.dots {
+    border-color: transparent;
+    background: transparent;
+    cursor: default;
+    color: var(--color-text-muted);
+}
+
+/* ============================================================
    BREADCRUMBS — drobečková navigace
    ============================================================ */
 .breadcrumbs {

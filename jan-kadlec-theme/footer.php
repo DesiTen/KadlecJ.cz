@@ -40,6 +40,7 @@
                         <a href="<?php echo esc_url( home_url( '/#services' ) ); ?>"><?php esc_html_e( 'Služby', 'jan-kadlec-theme' ); ?></a>
                         <a href="<?php echo esc_url( home_url( '/#about' ) ); ?>"><?php esc_html_e( 'O mně', 'jan-kadlec-theme' ); ?></a>
                         <a href="<?php echo esc_url( home_url( '/#case-studies' ) ); ?>"><?php esc_html_e( 'Případové studie', 'jan-kadlec-theme' ); ?></a>
+                        <a href="<?php echo esc_url( home_url( '/#blog' ) ); ?>"><?php esc_html_e( 'Blog', 'jan-kadlec-theme' ); ?></a>
                         <a href="<?php echo esc_url( home_url( '/#contact' ) ); ?>"><?php esc_html_e( 'Kontakt', 'jan-kadlec-theme' ); ?></a>
                         <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>"><?php esc_html_e( 'Zásady ochrany osobních údajů', 'jan-kadlec-theme' ); ?></a>
                         <?php
