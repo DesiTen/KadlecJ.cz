@@ -565,9 +565,8 @@ textarea.form-control {
 }
 
 /* Proporční výška obrázku pro 4-col layout (užší karta → nižší foto) */
-.blog-grid--4col .blog-card--standard .blog-card__img-wrap {
-    height: 180px;
-}
+.blog-grid--4col .blog-card--standard .blog-card__img-wrap { height: 180px; }
+.blog-grid--4col .blog-card--standard .blog-card__img       { height: 180px; }
 
 /* Stagger animace karet */
 .blog-grid--4col .blog-card:nth-child(1) { transition-delay: 0.05s; }
@@ -581,7 +580,8 @@ textarea.form-control {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .blog-grid--4col .blog-card--standard .blog-card__img-wrap {
+    .blog-grid--4col .blog-card--standard .blog-card__img-wrap,
+    .blog-grid--4col .blog-card--standard .blog-card__img {
         height: 200px;
     }
 }
@@ -592,7 +592,8 @@ textarea.form-control {
         grid-template-columns: 1fr;
     }
 
-    .blog-grid--4col .blog-card--standard .blog-card__img-wrap {
+    .blog-grid--4col .blog-card--standard .blog-card__img-wrap,
+    .blog-grid--4col .blog-card--standard .blog-card__img {
         height: 220px;
     }
 }
@@ -704,18 +705,15 @@ textarea.form-control {
     transform: scale(1.04);
 }
 
-/* Výška obrázku dle varianty */
-.blog-card--featured .blog-card__img-wrap {
-    height: 360px;
-}
+/* Výška obrázku dle varianty — nastavena na wrapper i přímo na img,
+   aby obešla WordPress default: img { height: auto } */
+.blog-card--featured .blog-card__img-wrap  { height: 360px; }
+.blog-card--standard .blog-card__img-wrap  { height: 220px; }
+.blog-card--horizontal .blog-card__img-wrap { height: 140px; }
 
-.blog-card--standard .blog-card__img-wrap {
-    height: 220px;
-}
-
-.blog-card--horizontal .blog-card__img-wrap {
-    height: 140px;
-}
+.blog-card--featured  .blog-card__img { height: 360px; }
+.blog-card--standard  .blog-card__img { height: 220px; }
+.blog-card--horizontal .blog-card__img { height: 140px; }
 
 /* Placeholder bez obrázku */
 .blog-card__img-placeholder {

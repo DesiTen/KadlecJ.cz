@@ -109,7 +109,7 @@ function jk_enqueue_assets(): void {
         'jk-main',
         JK_THEME_URI . '/style.css',
         [ 'jk-google-fonts' ],
-        JK_THEME_VERSION
+        filemtime( JK_THEME_DIR . '/style.css' )
     );
 
     // ---- Rozšířené / utility styly ---------------------------
@@ -117,7 +117,7 @@ function jk_enqueue_assets(): void {
         'jk-custom',
         JK_THEME_URI . '/custom-style.css',
         [ 'jk-main' ],
-        JK_THEME_VERSION
+        filemtime( JK_THEME_DIR . '/custom-style.css' )
     );
 
     // ---- Hlavní JS -------------------------------------------
@@ -125,7 +125,9 @@ function jk_enqueue_assets(): void {
         'jk-main',
         JK_THEME_URI . '/assets/js/main.js',
         [],
-        JK_THEME_VERSION,
+        file_exists( JK_THEME_DIR . '/assets/js/main.js' )
+            ? filemtime( JK_THEME_DIR . '/assets/js/main.js' )
+            : JK_THEME_VERSION,
         [ 'strategy' => 'defer', 'in_footer' => true ]
     );
 
