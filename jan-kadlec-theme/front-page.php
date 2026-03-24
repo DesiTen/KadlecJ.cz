@@ -247,7 +247,7 @@ get_header();
 $blog_query = new WP_Query( [
     'post_type'           => 'post',
     'post_status'         => 'publish',
-    'posts_per_page'      => 3,
+    'posts_per_page'      => 4,
     'orderby'             => 'date',
     'order'               => 'DESC',
     'no_found_rows'       => false,
@@ -265,35 +265,22 @@ $has_posts = $blog_query->have_posts();
         <header class="section-header">
             <span class="section-eyebrow"><?php esc_html_e( 'Mimo terminál', 'jan-kadlec-theme' ); ?></span>
             <h2 class="section-title" id="blog-heading">
-                <?php esc_html_e( 'Leadership, mindset', 'jan-kadlec-theme' ); ?>
-                <span><?php esc_html_e( '& knihy, které mě formují', 'jan-kadlec-theme' ); ?></span>
+                <?php esc_html_e( 'Myšlenky, které', 'jan-kadlec-theme' ); ?>
+                <span><?php esc_html_e( 'formují rozhodování', 'jan-kadlec-theme' ); ?></span>
             </h2>
             <p class="section-desc">
-                <?php esc_html_e( 'AI a automatizace jsou jen část příběhu. Myšlenky o leadershipu, strategickém myšlení a knihách, které rezonují s každodenní realitou vedení firmy.', 'jan-kadlec-theme' ); ?>
+                <?php esc_html_e( 'Leadership a strategické myšlení nejsou buzzwordy — jsou to svaly, které se musí trénovat. Píšu o knihách, principech a zkušenostech, které přímo ovlivňují, jak vedu projekty i lidi.', 'jan-kadlec-theme' ); ?>
             </p>
         </header>
 
         <?php if ( $has_posts ) : ?>
 
-            <!-- ——— Editorial grid ——— -->
-            <div class="blog-featured">
-
-                <!-- Hlavní (featured) příspěvek — zabírá levé 2/3 -->
-                <div class="blog-featured__main">
-                    <?php
-                    $blog_query->the_post();
-                    get_template_part( 'template-parts/blog-card', null, [ 'variant' => 'featured' ] );
-                    ?>
-                </div>
-
-                <!-- Vedlejší 2 příspěvky — pravá 1/3, stacked -->
-                <div class="blog-featured__side">
-                    <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
-                        <?php get_template_part( 'template-parts/blog-card', null, [ 'variant' => 'horizontal' ] ); ?>
-                    <?php endwhile; ?>
-                </div>
-
-            </div><!-- /.blog-featured -->
+            <!-- ——— 4-sloupcový grid ——— -->
+            <div class="blog-grid blog-grid--4col">
+                <?php while ( $blog_query->have_posts() ) : $blog_query->the_post(); ?>
+                    <?php get_template_part( 'template-parts/blog-card', null, [ 'variant' => 'standard' ] ); ?>
+                <?php endwhile; ?>
+            </div><!-- /.blog-grid -->
 
             <!-- Odkaz na plný archiv -->
             <div class="blog-section__footer">

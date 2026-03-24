@@ -556,19 +556,45 @@ textarea.form-control {
    BLOG — HOMEPAGE PREVIEW (sekce #blog)
    ============================================================ */
 
-/* Editorial grid: featured vlevo (2/3) + 2 menší vpravo (1/3) */
-.blog-featured {
+/* 4-sloupcový grid na úvodní stránce */
+.blog-grid--4col {
     display: grid;
-    grid-template-columns: 1.65fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-md);
     align-items: start;
 }
 
-.blog-featured__side {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    height: 100%;
+/* Proporční výška obrázku pro 4-col layout (užší karta → nižší foto) */
+.blog-grid--4col .blog-card--standard .blog-card__img-wrap {
+    height: 180px;
+}
+
+/* Stagger animace karet */
+.blog-grid--4col .blog-card:nth-child(1) { transition-delay: 0.05s; }
+.blog-grid--4col .blog-card:nth-child(2) { transition-delay: 0.12s; }
+.blog-grid--4col .blog-card:nth-child(3) { transition-delay: 0.19s; }
+.blog-grid--4col .blog-card:nth-child(4) { transition-delay: 0.26s; }
+
+/* Na středních obrazovkách → 2 sloupce */
+@media (max-width: 1024px) {
+    .blog-grid--4col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-grid--4col .blog-card--standard .blog-card__img-wrap {
+        height: 200px;
+    }
+}
+
+/* Na mobilech → 1 sloupec */
+@media (max-width: 560px) {
+    .blog-grid--4col {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-grid--4col .blog-card--standard .blog-card__img-wrap {
+        height: 220px;
+    }
 }
 
 /* Footer blogu — tlačítko + počet příspěvků */
@@ -584,6 +610,13 @@ textarea.form-control {
 .blog-section__count {
     font-size: 0.85rem;
     color: var(--color-text-muted);
+}
+
+@media (max-width: 560px) {
+    .blog-section__footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 /* Coming-soon prázdný stav */
@@ -625,33 +658,6 @@ textarea.form-control {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--color-dark);
-}
-
-/* Responsive */
-@media (max-width: 860px) {
-    .blog-featured {
-        grid-template-columns: 1fr;
-    }
-
-    .blog-featured__side {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-
-    .blog-featured__side > * {
-        flex: 1 1 280px;
-    }
-}
-
-@media (max-width: 560px) {
-    .blog-section__footer {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .blog-featured__side {
-        flex-direction: column;
-    }
 }
 
 /* ============================================================
