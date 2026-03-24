@@ -1,6 +1,6 @@
 <?php
 /**
- * Single post template
+ * Šablona pro jednotlivý příspěvek
  *
  * @package jan-kadlec-theme
  */
@@ -19,7 +19,7 @@ get_header();
                 </span>
                 <h1><?php the_title(); ?></h1>
                 <p class="text-muted" style="margin-top: var(--space-xs); font-size:0.9rem;">
-                    <?php echo esc_html( get_the_date() ); ?>
+                    <?php echo esc_html( get_the_date( 'j. n. Y' ) ); ?>
                     <?php if ( has_post_thumbnail() ) : ?>
                         <br>
                     <?php endif; ?>

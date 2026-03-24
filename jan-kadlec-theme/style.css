@@ -3,7 +3,7 @@ Theme Name: Jan Kadlec - AI & Business Consultant
 Theme URI: https://kadlecj.cz
 Author: Jan Kadlec
 Author URI: https://kadlecj.cz
-Description: Custom theme for Jan Kadlec - AI & Business Consultant. Cozy Tech Office aesthetic with a professional, modern feel.
+Description: Vlastní šablona pro Jana Kadlece – AI & Business Konzultanta. Estetika „Cozy Tech Office" v profesionálním, moderním provedení.
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -1211,4 +1211,47 @@ p.lead {
     position: absolute;
     width: 1px;
     word-wrap: normal !important;
+}
+
+/* ============================================================
+   HERO SILUETA — JK-silueta.png
+   ============================================================ */
+
+/* Obrázek vyplní celý .hero-img-wrap */
+.hero-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+
+/*
+ * Silueta je PNG s průhledným pozadím.
+ * Přidáme jemný modrozlatý gradient pod ni
+ * a zachováme měkký "Cozy Tech Office" charakter.
+ */
+.hero-silhouette {
+    object-fit: contain;          /* zachová proporce PNG */
+    object-position: bottom center;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 86, 179, 0.06) 0%,
+        rgba(255, 215, 0, 0.08) 100%
+    );
+    /* Jemné vignettování krajů — hloubka, ne výřez */
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+    );
 }
