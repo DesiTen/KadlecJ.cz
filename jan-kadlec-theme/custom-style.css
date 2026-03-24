@@ -272,6 +272,287 @@ textarea.form-control {
 }
 
 /* ============================================================
+   SERVICES GRID — 3 sloupcový layout (3 pilíře)
+   ============================================================ */
+.services-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+    .services-grid--3col {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+    .services-grid--3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================================
+   CREATICOM ODKAZ — blok v sekci "O mně"
+   ============================================================ */
+.creaticom-link-wrap {
+    margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+}
+
+.creaticom-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.875rem 1.25rem;
+    background: var(--color-white);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    transition:
+        border-color var(--transition-base),
+        box-shadow var(--transition-base),
+        transform var(--transition-bounce);
+    max-width: 340px;
+    width: 100%;
+}
+
+.creaticom-link:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-3px);
+}
+
+.creaticom-link__icon {
+    width: 36px;
+    height: 36px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    transition: background-color var(--transition-base);
+}
+
+.creaticom-link:hover .creaticom-link__icon {
+    background: var(--color-primary-dark);
+}
+
+.creaticom-link__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.creaticom-link__text strong {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    line-height: 1;
+}
+
+.creaticom-link__text em {
+    font-style: normal;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+}
+
+/* ============================================================
+   MIMO TERMINÁL — Coming Soon sekce
+   ============================================================ */
+.mimo-terminal {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dekorativní šum textu v pozadí */
+.mimo-terminal::before {
+    content: '> AI_ > mindset_ > books_ > leadership_';
+    position: absolute;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    color: rgba(0, 86, 179, 0.06);
+    letter-spacing: 0.08em;
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.mimo-terminal__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.mimo-terminal__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.mimo-terminal__title {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--color-dark);
+    line-height: 1.15;
+}
+
+.mimo-terminal__title span {
+    color: var(--color-primary);
+}
+
+.mimo-terminal__desc {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    max-width: 440px;
+    line-height: 1.75;
+}
+
+/* Blikající indikátor "coming soon" */
+.mimo-terminal__coming-soon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-top: var(--space-xs);
+    padding: 0.5rem 1rem;
+    background: var(--color-surface);
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-border);
+    width: fit-content;
+}
+
+.mimo-terminal__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    animation: blink-dot 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes blink-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.35; transform: scale(0.7); }
+}
+
+/* Placeholder karty knih */
+.mimo-terminal__cards {
+    position: relative;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-card {
+    position: absolute;
+    width: 240px;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    overflow: hidden;
+}
+
+.book-card--blur {
+    filter: blur(1.5px);
+    opacity: 0.55;
+}
+
+.book-card--offset {
+    transform: translateY(-20px) translateX(20px) rotate(2deg);
+    z-index: 2;
+    filter: blur(0.8px);
+    opacity: 0.65;
+}
+
+.book-card--back {
+    transform: translateY(24px) translateX(-16px) rotate(-2.5deg);
+    z-index: 0;
+    opacity: 0.4;
+}
+
+.book-card__spine {
+    width: 12px;
+    background: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.book-card__spine--gold {
+    background: var(--color-accent);
+}
+
+.book-card__body {
+    padding: var(--space-md) var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.book-card__line {
+    height: 10px;
+    background: var(--color-border);
+    border-radius: 4px;
+    width: 100%;
+}
+
+.book-card__line--title {
+    height: 14px;
+    background: rgba(0, 86, 179, 0.12);
+    width: 80%;
+}
+
+.book-card__line--author {
+    width: 55%;
+    background: rgba(255, 215, 0, 0.2);
+}
+
+.book-card__line--short {
+    width: 40%;
+}
+
+/* Středový efekt — "fog of mystery" overlay */
+.mimo-terminal__cards::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        transparent 30%,
+        rgba(248, 249, 252, 0.85) 80%
+    );
+    pointer-events: none;
+    border-radius: var(--radius-lg);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .mimo-terminal__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .mimo-terminal__cards {
+        display: none;
+    }
+}
+
+/* ============================================================
    PRINT
    ============================================================ */
 @media print {

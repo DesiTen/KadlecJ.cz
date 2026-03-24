@@ -284,24 +284,19 @@ function jk_render_services( int $count = 4 ): void {
 function jk_render_fallback_services(): void {
     $services = [
         [
-            'icon'  => '🤖',
-            'title' => __( 'AI Strategie', 'jan-kadlec-theme' ),
-            'desc'  => __( 'Vlastní AI plány sladěné s vašimi obchodními cíli — od proof-of-concept až po škálované nasazení.', 'jan-kadlec-theme' ),
+            'icon'  => '🎯',
+            'title' => __( 'AI Strategie & Audit', 'jan-kadlec-theme' ),
+            'desc'  => __( 'Neimplementuji AI pro efekt. Identifikuji kritická místa ve workflow, kde nasazení modelů přinese skutečnou návratnost — a kde naopak ne. Výstupem je konkrétní plán s prioritami a odhadovaným ROI.', 'jan-kadlec-theme' ),
         ],
         [
-            'icon'  => '📈',
-            'title' => __( 'Business Konzultace', 'jan-kadlec-theme' ),
-            'desc'  => __( 'Operační a růstové poradenství postavené na datech, designu procesů a měřitelných KPI.', 'jan-kadlec-theme' ),
+            'icon'  => '🔗',
+            'title' => __( 'Procesní automatizace na míru', 'jan-kadlec-theme' ),
+            'desc'  => __( 'Propojuji CRM, ERP a interní nástroje do autonomních celků. Stavím automatizace v Make i na míru — procesy, které jedou samy a vrátí vašemu týmu stovky hodin ročně.', 'jan-kadlec-theme' ),
         ],
         [
-            'icon'  => '⚙️',
-            'title' => __( 'Automatizace procesů', 'jan-kadlec-theme' ),
-            'desc'  => __( 'Komplexní automatizace pracovních postupů pomocí AI nástrojů — odstraňte úzká hrdla a uvolněte svůj tým.', 'jan-kadlec-theme' ),
-        ],
-        [
-            'icon'  => '🎓',
-            'title' => __( 'AI Workshopy', 'jan-kadlec-theme' ),
-            'desc'  => __( 'Praktické školení týmů v oblasti LLM, prompt engineeringu a zodpovědného zavádění AI.', 'jan-kadlec-theme' ),
+            'icon'  => '⚡',
+            'title' => __( 'Rapid Prototyping', 'jan-kadlec-theme' ),
+            'desc'  => __( 'Rychlý vývoj funkčních interních aplikací a MVP v řádu dnů. Metodikou Vibe Coding dokážeme ověřit nebo dodat řešení dřív, než klasický vývoj napíše první specifikaci.', 'jan-kadlec-theme' ),
         ],
     ];
 
@@ -366,24 +361,24 @@ function jk_render_fallback_references(): void {
         [
             'emoji'  => '🏭',
             'tag'    => __( 'Výroba', 'jan-kadlec-theme' ),
-            'title'  => __( 'AI kontrola kvality výroby', 'jan-kadlec-theme' ),
-            'result' => __( 'Implementace počítačové vize pro inspekci výrobků — snížení míry defektů a zkrácení doby manuální kontroly.', 'jan-kadlec-theme' ),
+            'title'  => __( 'Automatizace výstupní kontroly', 'jan-kadlec-theme' ),
+            'result' => __( 'Nasazení AI modelu pro automatickou inspekci výrobních kusů. Eliminace manuálního třídění a zkrácení cyklu kontroly kvality.', 'jan-kadlec-theme' ),
             'metric' => '−38%',
             'mlabel' => __( 'míra defektů', 'jan-kadlec-theme' ),
         ],
         [
-            'emoji'  => '💼',
-            'tag'    => __( 'Finance', 'jan-kadlec-theme' ),
-            'title'  => __( 'Automatizovaný reportingový pipeline', 'jan-kadlec-theme' ),
-            'result' => __( 'Nahrazení 12 hodin týdenního manuálního reportingu plně automatizovaným AI pipeline.', 'jan-kadlec-theme' ),
+            'emoji'  => '📊',
+            'tag'    => __( 'Marketing & Agentura', 'jan-kadlec-theme' ),
+            'title'  => __( 'Automatizovaný reporting klientů', 'jan-kadlec-theme' ),
+            'result' => __( 'Propojení reklamních platforem, CRM a Google Sheets do autonomního pipeline. 12 hodin manuální práce týdně eliminováno.', 'jan-kadlec-theme' ),
             'metric' => '12h',
             'mlabel' => __( 'ušetřeno / týden', 'jan-kadlec-theme' ),
         ],
         [
             'emoji'  => '🛒',
             'tag'    => __( 'E-Commerce', 'jan-kadlec-theme' ),
-            'title'  => __( 'Personalizační engine', 'jan-kadlec-theme' ),
-            'result' => __( 'Nasazení doporučovacího systému, který měřitelně zvýšil průměrnou hodnotu objednávky.', 'jan-kadlec-theme' ),
+            'title'  => __( 'AI personalizace produktového feedu', 'jan-kadlec-theme' ),
+            'result' => __( 'Rapid prototyping doporučovacího enginu v Make + custom API. Nasazeno za 11 dní od prvního briefu.', 'jan-kadlec-theme' ),
             'metric' => '+22%',
             'mlabel' => __( 'průměrná hodnota objednávky', 'jan-kadlec-theme' ),
         ],
