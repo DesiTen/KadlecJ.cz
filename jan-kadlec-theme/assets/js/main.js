@@ -84,6 +84,23 @@
     } );
 
     /* ============================================================
+       CLIENTS LIST TOGGLE
+       ============================================================ */
+    const clientsToggle = document.getElementById( 'clientsToggle' );
+    const clientsList   = document.getElementById( 'clientsList' );
+
+    if ( clientsToggle && clientsList ) {
+        clientsToggle.addEventListener( 'click', () => {
+            const isOpen = clientsToggle.getAttribute( 'aria-expanded' ) === 'true';
+            clientsToggle.setAttribute( 'aria-expanded', String( ! isOpen ) );
+            clientsList.setAttribute( 'aria-hidden', String( isOpen ) );
+            clientsList.classList.toggle( 'is-open', ! isOpen );
+            clientsToggle.querySelector( '.clients-list-toggle__text' ).textContent =
+                isOpen ? 'Zobrazit všechny klienty' : 'Skrýt klienty';
+        } );
+    }
+
+    /* ============================================================
        INTERSECTION OBSERVER — fade-in on scroll
        ============================================================ */
     if ( 'IntersectionObserver' in window ) {

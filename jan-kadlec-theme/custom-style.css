@@ -7,6 +7,196 @@
  */
 
 /* ============================================================
+   CLIENTS TICKER
+   ============================================================ */
+
+.clients-ticker {
+    padding: var(--space-lg) 0 var(--space-md);
+    background: #fff;
+    border-bottom: 1px solid #EAECF0;
+}
+
+.clients-ticker__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+/* -- Scrolling track -- */
+.clients-track-wrap {
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    margin-bottom: var(--space-md);
+}
+
+.clients-track {
+    display: flex;
+    gap: 0.75rem;
+    width: max-content;
+    animation: clientsScroll 28s linear infinite;
+}
+
+.clients-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes clientsScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+.client-chip {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 0.55rem 1.1rem;
+    background: #F3F4F6;
+    border: 1px solid #E5E7EB;
+    border-radius: var(--radius-pill);
+    cursor: default;
+    transition: background 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.client-chip:hover {
+    background: #E9EAEC;
+    border-color: #D1D5DB;
+    transform: translateY(-2px);
+}
+
+.client-chip__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    line-height: 1.2;
+}
+
+.client-chip__industry {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #9CA3AF;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* -- Toggle button -- */
+.clients-list-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.clients-list-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    background: none;
+    border: 1px solid #D1D5DB;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6B7280;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.clients-list-toggle:hover {
+    border-color: #9CA3AF;
+    color: #374151;
+    background: #F9FAFB;
+}
+
+.clients-list-toggle__icon {
+    transition: transform 0.3s ease;
+}
+
+.clients-list-toggle[aria-expanded="true"] .clients-list-toggle__icon {
+    transform: rotate(180deg);
+}
+
+/* -- Expandable list -- */
+.clients-list {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+    opacity: 0;
+}
+
+.clients-list.is-open {
+    max-height: 600px;
+    opacity: 1;
+}
+
+.clients-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    padding: var(--space-sm) 0 var(--space-md);
+}
+
+.clients-list__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+    background: #F9FAFB;
+    border: 1px solid #F3F4F6;
+    border-radius: var(--radius-md);
+    animation: fadeSlideIn 0.35s ease both;
+    animation-delay: calc(var(--i) * 0.04s);
+}
+
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.clients-list__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #D1D5DB;
+    flex-shrink: 0;
+}
+
+.clients-list__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.clients-list__name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.clients-list__tag {
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: #9CA3AF;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 640px) {
+    .clients-list__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ============================================================
    SCROLL REVEAL ANIMATIONS
    ============================================================ */
 .fade-in {

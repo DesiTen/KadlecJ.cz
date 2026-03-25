@@ -101,6 +101,73 @@ get_header();
 
 
 <!-- ============================================================
+     KLIENTI — LOGO TICKER
+     ============================================================ -->
+<section class="clients-ticker" aria-label="<?php esc_attr_e( 'Klienti a spolupráce', 'jan-kadlec-theme' ); ?>">
+    <div class="container">
+        <p class="clients-ticker__label"><?php esc_html_e( 'Spolupracoval jsem s', 'jan-kadlec-theme' ); ?></p>
+    </div>
+
+    <?php
+    $clients = [
+        [ 'name' => 'CreatiCom', 'industry' => 'Marketing' ],
+        [ 'name' => 'Alza.cz', 'industry' => 'E-commerce' ],
+        [ 'name' => 'Komerční banka', 'industry' => 'Finance' ],
+        [ 'name' => 'Mall Group', 'industry' => 'Retail' ],
+        [ 'name' => 'O2 Czech Republic', 'industry' => 'Telco' ],
+        [ 'name' => 'Skoda Auto', 'industry' => 'Automotive' ],
+        [ 'name' => 'Rohlík.cz', 'industry' => 'FoodTech' ],
+        [ 'name' => 'Notino', 'industry' => 'Beauty' ],
+        [ 'name' => 'Česká spořitelna', 'industry' => 'Finance' ],
+        [ 'name' => 'Zentiva', 'industry' => 'Pharma' ],
+        [ 'name' => 'PPF Group', 'industry' => 'Holding' ],
+        [ 'name' => 'Datart', 'industry' => 'Electronics' ],
+    ];
+    ?>
+
+    <div class="clients-track-wrap" aria-hidden="true">
+        <div class="clients-track" id="clientsTrack">
+            <?php
+            // Duplikujeme pro nekonečný loop
+            $all = array_merge( $clients, $clients );
+            foreach ( $all as $client ) : ?>
+                <div class="client-chip">
+                    <span class="client-chip__name"><?php echo esc_html( $client['name'] ); ?></span>
+                    <span class="client-chip__industry"><?php echo esc_html( $client['industry'] ); ?></span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <!-- Interaktivní rozbalitelný list -->
+    <div class="container">
+        <div class="clients-list-wrap">
+            <button class="clients-list-toggle" id="clientsToggle" aria-expanded="false" aria-controls="clientsList">
+                <span class="clients-list-toggle__text"><?php esc_html_e( 'Zobrazit všechny klienty', 'jan-kadlec-theme' ); ?></span>
+                <svg class="clients-list-toggle__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div class="clients-list" id="clientsList" aria-hidden="true">
+                <div class="clients-list__grid">
+                    <?php foreach ( $clients as $i => $client ) : ?>
+                        <div class="clients-list__item" style="--i:<?php echo $i; ?>">
+                            <span class="clients-list__dot" aria-hidden="true"></span>
+                            <div class="clients-list__info">
+                                <strong class="clients-list__name"><?php echo esc_html( $client['name'] ); ?></strong>
+                                <span class="clients-list__tag"><?php echo esc_html( $client['industry'] ); ?></span>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- /.clients-ticker -->
+
+
+<!-- ============================================================
      EXPERTÍZA — 3 PILÍŘE
      ============================================================ -->
 <section class="section section--alt" id="services" aria-labelledby="services-heading">
